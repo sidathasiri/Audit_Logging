@@ -1,0 +1,32 @@
+<?xml version='1.0' encoding='UTF-8'?>  
+<!DOCTYPE hibernate-configuration PUBLIC  
+          "-//Hibernate/Hibernate Configuration DTD 3.0//EN"  
+          "http://hibernate.sourceforge.net/hibernate-configuration-3.0.dtd">
+
+<hibernate-configuration>
+
+	<session-factory>
+		<property name="hibernate.hbm2ddl.auto">update</property>
+		<property name="dialect">org.hibernate.dialect.MySQL5Dialect</property>
+		<property name="connection.url">jdbc:mysql://localhost:3306/audit_test</property>
+		<property name="connection.username">root</property>
+		<property name="connection.password"></property>
+		<property name="connection.driver_class">com.mysql.jdbc.Driver</property>
+
+		<property name="org.hibernate.envers.audit_table_suffix">_AUDIT</property>
+		<property name="org.hibernate.envers.revision_field_name">revision_id</property>
+		<property name="org.hibernate.envers.revision_type_field_name">revtype</property>
+		<property name="hibernate.show_sql">false</property>	
+	
+		<property name="hibernate.ejb.event.post-insert">org.hibernate.ejb.event.EJB3PostInsertEventListener,org.hibernate.envers.event.AuditEventListener</property>
+		<property name="hibernate.ejb.event.post-update">org.hibernate.ejb.event.EJB3PostUpdateEventListener,org.hibernate.envers.event.AuditEventListener</property>
+		<property name="hibernate.ejb.event.post-delete">org.hibernate.ejb.event.EJB3PostDeleteEventListener,org.hibernate.envers.event.AuditEventListener</property>
+		
+		<mapping resource="employee.hbm.xml" />
+		<!--mapping resource="student.hbm.xml" /-->
+		<mapping resource="userreventity.hbm.xml" />
+	</session-factory>
+
+
+
+</hibernate-configuration>  
